@@ -14,6 +14,16 @@ module.exports = {
         new webpack.ProvidePlugin({
             '$': 'jquery',
             'jQuery': 'jquery'
+        }),
+        new webpack.LoaderOptionsPlugin({
+            test: /\.scss$/,
+            options: {
+                sassLoader: {
+                    includePaths: [
+                        path.resolve(__dirname, './node_modules/foundation-sites/scss')
+                    ]
+                }
+            }
         })
     ],
     output: {
@@ -40,10 +50,15 @@ module.exports = {
                 query: {
                     presets: ['react', 'es2015', 'stage-0']
                 },
-                test:/\.jsx?$/,
-                exclude:/(node_modules|bower_components)/
+                test: /\.jsx?$/,
+                exclude: /(node_modules|bower_components)/
             }
         ]
     },
+    // sassLoader: {
+    //     includePaths: [
+    //         path.resolve(__dirname, '.node_modules/foundation-sites/scss')
+    //     ]
+    // },
     devtool: 'cheap-module-eval-source-map'
 }
